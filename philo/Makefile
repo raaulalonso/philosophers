@@ -1,10 +1,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = src/philo.c
-
 NAME = philo
 
+SRCS = src/philo.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
