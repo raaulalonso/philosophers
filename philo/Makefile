@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+PTHREAD = -lpthread
 
 NAME = philo
 
@@ -9,7 +10,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lpthread
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(PTHREAD)
 
 clean:
 	rm -rf $(OBJS)

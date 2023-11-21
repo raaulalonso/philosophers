@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:07 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/21 20:32:44 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:57:56 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@
 # include <stdlib.h>
 # include <pthread.h>
 
+typedef struct s_fork
+{
+	int				id;
+	int				taken;
+	pthread_mutex_t	mutex;
+}	t_fork;
+
 typedef struct s_philo
 {
 	int			id;
 	long		last_meal_t;
+	int			meal_counter;
+	t_fork		*second_fork;
+	t_fork		*first_fork;
 	pthread_t	thread;
 }	t_philo;
-
-typedef struct s_fork
-{
-	int				id;
-	pthread_mutex_t	mutex;
-}	t_fork;
 
 typedef struct s_data
 {
@@ -39,6 +43,7 @@ typedef struct s_data
 	long	time_to_eat;
 	long	time_to_sleep;
 	long	max_meals;
+	int		threads_created;
 	int		dead;
 }	t_data;
 
