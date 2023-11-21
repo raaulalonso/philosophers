@@ -3,13 +3,13 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = philo
 
-SRCS = src/philo.c
+SRCS = src/philo.c src/utils.c src/init.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lpthread
 
 clean:
 	rm -rf $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:21 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/20 22:10:40 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/21 20:36:15 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc != 4 && argc != 5)
-	{
-		printf("Error: Invalid Arguments\n");
-		exit(1);
-	}
+	t_data data;
+	
+	if ((argc != 5 && argc != 6) || check_arg(argc, argv) == 1)
+		error_exit("Error: Invalid arguments.");
+	init_data(&data, argc, argv);
 }
