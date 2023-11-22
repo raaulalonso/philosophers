@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:26:51 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/21 23:13:57 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:36:41 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	pthread_mutex_init(&data->mutex, NULL);
 	data->threads_created = 0;
 	if (argc == 6)
 		data->max_meals = ft_atoi(argv[5]);
