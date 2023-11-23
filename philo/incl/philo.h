@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:07 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/22 08:59:55 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:06:03 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	int			id;
-	long		last_meal_t;
-	int			meal_counter;
-	t_fork		*second_fork;
-	t_fork		*first_fork;
-	pthread_t	thread;
+	int				id;
+	long			last_meal_t;
+	int				meal_counter;
+	t_fork			*second_fork;
+	t_fork			*first_fork;
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
 }	t_philo;
 
 typedef struct s_data

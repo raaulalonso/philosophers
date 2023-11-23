@@ -6,35 +6,35 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:21 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/22 09:41:12 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:48:33 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-/*void	dinner(t_data *data)
+void	eat(t_philo *philo)
 {
-	if (data->max_meals == 0)
-		return (0);
-	
-}*/
+	printf("philo %d think\n", philo->id);
+	while (get_int(&philo->mutex, &philo->first_fork->taken) == 1 || get_int(&philo->mutex, &philo->second_fork->taken) == 1); // esperan para poder comer
+	set_int(&philo->mutex, &philo->first_fork->taken, 1);
+	set_int(&philo->mutex, &philo->second_fork->taken, 1);
+	printf("philo %d eat\n", philo->id);
+	usleep(100000);
+	printf("philo %d sleep\n", philo->id);
+	set_int(&philo->mutex, &philo->first_fork->taken, 0);
+	set_int(&philo->mutex, &philo->second_fork->taken, 0);
+	usleep(100000);
+}
 
-/**
- * @file philo.c
- * @brief Implementation of the dining philosophers problem.
- *
- * This file contains the implementation of the dining philosophers problem,
- * where multiple philosophers sit around a table and alternate between thinking
- * and eating. The code includes functions for thread creation, mutex locking,
- * and data initialization.
- */
-void	*waitthreads(void *data)
+void	*dinner_sim(void *ph)
 {
-	t_data	*table;
-	table = (t_data *)(data);
-	printf("start%d\n", get_int(&table->mutex, &table->threads_created));
-	while (get_int(&table->mutex, &table->threads_created) != 1);
-	printf("end%d\n", get_int(&table->mutex, &table->threads_created));
+	t_philo	*philo;
+	philo = (t_philo *)(ph);
+	while (1)
+	{
+		eat(&*philo);
+	}
+	printf("lol\n");
 	return (NULL);
 }
 
@@ -77,20 +77,31 @@ int	main(int argc, char **argv)
 	if ((argc != 5 && argc != 6) || check_arg(argc, argv) == 1)
 		error_exit("Error: Invalid arguments.");
 	init_data(&data, argc, argv);
+	int	j = 0;
 	int	i = 0;
-	while (i < data.num_philos)
+	while (j < 2)
 	{
-		if (pthread_create(&data.philo[i].thread, NULL, &waitthreads, (void *)&data) != 0)
-			error_exit("Error: During thread creation.");
+		//printf("%d\n", i);
+		if (i % 2 == 0 && j == 0)
+		{
+			if (pthread_create(&data.philo[i].thread, NULL, &dinner_sim, (void *)&data.philo[i]) != 0)
+				error_exit("Error: During thread creation.");
+		}
+		else if (i % 2 != 0 && j == 1)
+		{
+			if (pthread_create(&data.philo[i].thread, NULL, &dinner_sim, (void *)&data.philo[i]) != 0)
+				error_exit("Error: During thread creation.");
+		}
 		i++;
-		usleep(50);
-		printf("%d\n", i);
+		if (i >= data.num_philos)
+		{
+			j++;
+			i = 0;
+		}
+		usleep(200);
 	}
-	set_int(&data.mutex, &data.threads_created, 1);
+	pthread_join(data.philo[0].thread, NULL);
 	
-	/*printf("philo %d -> forks %d %d\n", data.philo[0].id, data.philo[0].first_fork->id, data.philo[0].second_fork->id);
-	printf("philo %d -> forks %d %d\n", data.philo[1].id, data.philo[1].first_fork->id, data.philo[1].second_fork->id);
-	printf("philo %d -> forks %d %d\n", data.philo[2].id, data.philo[2].first_fork->id, data.philo[2].second_fork->id);
-	printf("philo %d -> forks %d %d\n", data.philo[3].id, data.philo[3].first_fork->id, data.philo[3].second_fork->id);*/
-	//dinner(&data);
+
+	
 }

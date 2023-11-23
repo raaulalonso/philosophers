@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:26:51 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/22 09:36:41 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:47:37 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,8 @@ void	asign_forks(t_data *data)
 	i = 1;
 	while (i < data->num_philos)
 	{
-		if (data->philo[i].id % 2 == 0)
-		{
-			data->philo[i].first_fork = &data->fork[i - 1];
-			data->philo[i].second_fork = &data->fork[i];
-		}
-		else
-		{
-			data->philo[i].first_fork = &data->fork[i];
-			data->philo[i].second_fork = &data->fork[i - 1];
-		}
+		data->philo[i].first_fork = &data->fork[i];
+		data->philo[i].second_fork = &data->fork[i - 1];
 		i++;
 	}
 }
