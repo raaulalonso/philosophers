@@ -4,7 +4,7 @@ PTHREAD = -lpthread
 
 NAME = philo
 
-SRCS = src/philo.c src/utils.c src/init.c
+SRCS = src/philo.c src/utils.c src/init.c src/utils2.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

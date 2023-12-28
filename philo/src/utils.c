@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:24:18 by raalonso          #+#    #+#             */
-/*   Updated: 2023/11/21 20:24:36 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:09:25 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	check_arg(int argc, char **argv)
 		while (argv[j][i] != '\0')
 		{
 			if (argv[j][i] > '9' || argv[j][i] < '0')
-			{
 				return (1);
-			}
 			i++;
 		}
 		i = 0;
