@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:07 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/28 19:57:31 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:53:24 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+typedef enum e_print
+{
+	THINK,
+	EAT,
+	SLEEP,
+	FORK,
+	DIED
+}	t_print;
 
 typedef struct s_data t_data;
 
@@ -64,7 +73,10 @@ void	set_int(pthread_mutex_t *mutex, int *dest, int value);
 void	set_long(pthread_mutex_t *mutex, long *dest, long value);
 long	get_long(pthread_mutex_t *mutex, long *value);
 time_t	time_from_init(long start_sim);
-time_t	time_init();
-void	precise_sleep(long time, t_philo *philo);
+time_t	time_init(void);
+int		precise_sleep(long time, t_philo *philo);
+void	print_status(t_print print, t_philo *philo);
+int		take_forks(t_philo *philo);
+int		check_death(t_philo *philo);
 
 #endif

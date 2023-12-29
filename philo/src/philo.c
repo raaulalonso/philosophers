@@ -6,58 +6,34 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:21 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/28 22:36:50 by raalonso         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:36:40 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
+/**
+ * @brief Simulates a philosopher having dinner.
+ * 
+ * This function represents the dinner routine of a philosopher. It performs the following steps:
+ * 2. Prints the current status as "THINK".
+ * 3. Takes the forks to start eating.
+ * 4. If the maximum number of meals is defined, increments the meal counter and checks if it has reached the maximum.
+ * 5. Prints the current status as "EAT".
+ * 6. Updates the time of the last meal.
+ * 7. Sleeps for the specified time to eat.
+ * 8. Prints the current status as "SLEEP".
+ * 9. Releases the forks after set to SLEEP to avoid other filosophers taking forks early.
+ * 10. Sleeps for the specified time to sleep.
+ * 
+ * @param philo A pointer to the philosopher structure.
+ */
 void	dinner(t_philo *philo)
 {
-	int	take;
-	
-	take = 0;
-	if (get_int(&philo->data->mutex, &philo->data->dead) == 1) // comprobar si alguien murio
+	print_status(THINK, philo);
+	if (take_forks(philo) == 1)
 		return ;
-	printf("%ldms philo %d is thinking\n",
-		time_from_init(get_long(&philo->data->mutex,
-				&philo->data->start_sim)), philo->id); // lo primero que hacen es pensar hasta que puedan comer. mutex podria quitarse.
-	while (1) // mientras no tenga sus dos tenedores
-	{
-		if (get_int(&philo->first_fork->mutex, &philo->first_fork->taken) == 0)
-		{
-			set_int(&philo->first_fork->mutex, &philo->first_fork->taken, 1);
-			take++;
-			printf("%ldms philo %d has taken a fork\n",
-				time_from_init(get_long(&philo->data->mutex,
-						&philo->data->start_sim)), philo->id);
-			if (take == 2)
-				break ;
-		}
-		else if (get_int(&philo->second_fork->mutex, &philo->second_fork->taken) == 0)
-		{
-			set_int(&philo->second_fork->mutex, &philo->second_fork->taken, 1);
-			take++;
-			printf("%ldms philo %d has taken a fork\n",
-				time_from_init(get_long(&philo->data->mutex,
-						&philo->data->start_sim)), philo->id);
-			if (take == 2)
-				break ;
-		}
-		if (get_int(&philo->data->mutex, &philo->data->dead) == 1) // comprobar si alguien murio
-			return ;
-		else if (get_int(&philo->data->mutex, &philo->data->dead) != 1 &&
-				time_from_init(philo->time_last_meal) > philo->data->time_to_die) // comprobar si ha muerto de hambre
-		{
-			set_int(&philo->data->mutex, &philo->data->dead, 1);
-			printf("%ldms philo %d died\n",
-				time_from_init(get_long(&philo->data->mutex,
-						&philo->data->start_sim)), philo->id);
-			return ;
-		}
-		usleep(100);
-	}
-	if (philo->meal_counter != -1) // si se ha definido el numero de comidas maximas, se cuentan las comidas y se comprueba si ha llegado a la maxima.
+	if (philo->meal_counter != -1)
 	{
 		philo->meal_counter++;
 		if (philo->meal_counter == philo->data->max_meals + 1)
@@ -66,32 +42,32 @@ void	dinner(t_philo *philo)
 			return ;
 		}
 	}
-	printf("%ldms philo %d is eating\n", time_from_init(get_long(&philo->data->mutex, &philo->data->start_sim)), philo->id); // come.
-	philo->time_last_meal = time_init(); // se actualiza la ultima vez que comio
-	precise_sleep(philo->data->time_to_eat, philo); // come durante este tiempo.
-	if (get_int(&philo->data->mutex, &philo->data->dead) == 1) // comprobar si alguien murio
+	print_status(EAT, philo);
+	philo->time_last_meal = time_init();
+	if (precise_sleep(philo->data->time_to_eat, philo) == 1)
 		return ;
-	printf("%ldms philo %d is sleeping\n", time_from_init(get_long(&philo->data->mutex, &philo->data->start_sim)), philo->id); // duerme.
-	set_int(&philo->mutex, &philo->first_fork->taken, 0); // suelta sus tenedores despues de decir que esta durmiendo para no solapar los mensajes.
+	print_status(SLEEP, philo);
+	set_int(&philo->mutex, &philo->first_fork->taken, 0);
 	set_int(&philo->mutex, &philo->second_fork->taken, 0);
-	precise_sleep(philo->data->time_to_sleep, philo); // duerme durante este tiempo.
-	// mientras duerme deberia comprobar si se ha muerto de hambre.
+	if (precise_sleep(philo->data->time_to_sleep, philo) == 1)
+		return ;
 }
 
-void	precise_sleep(long time, t_philo *philo)
+/**
+ * @brief Simulates the dinner for a philosopher.
+ * 
+ * This function is responsible for simulating the dinner for a philosopher.
+ * It takes a pointer to a `t_philo` structure as a parameter.
+ * The `t_philo` structure contains information about the philosopher and the simulation data.
+ * The function updates the `time_last_meal` field of the `t_philo` structure and calls the `dinner` function.
+ * The simulation continues until the `get_int` function returns 1, indicating that the simulation should stop. (Philosopher death or max meals reached)
+ * 
+ * @param ph A pointer to a `t_philo` structure representing the philosopher.
+ * @return void* Always returns NULL.
+ */
+void *sim(void *ph)
 {
-	long start;
-
-	start = time_init();
-	while (time_from_init(start) < time)
-	{
-		usleep(1000);
-	}
-}
-
-void	*sim(void *ph)
-{
-	t_philo	*philo;
+	t_philo *philo;
 
 	philo = (t_philo *)(ph);
 	philo->time_last_meal = philo->data->start_sim;
@@ -100,24 +76,6 @@ void	*sim(void *ph)
 		dinner(&*philo);
 	}
 	return (NULL);
-}
-
-time_t	time_init()
-{
-	struct	timeval current_time;
-
-	gettimeofday(&current_time, NULL);
-	return((current_time.tv_sec * 1000) + current_time.tv_usec / 1000);
-}
-
-time_t time_from_init(long start_sim)
-{
-	struct	timeval current_time;
-	long	timestamp;
-
-	gettimeofday(&current_time, NULL);
-	timestamp = (((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000)) - start_sim);
-	return (timestamp);
 }
 
 int	main(int argc, char **argv)
