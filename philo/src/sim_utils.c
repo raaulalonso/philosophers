@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:20:10 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/29 20:52:12 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:01:42 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 /**
  * @brief Prints the status of a philosopher.
  * 
- * This function prints the status of a philosopher based on the given print parameter.
+ * This function prints the status of a philosopher based on the given print
+ * parameter.
  * The status can be one of the following: THINK, EAT, SLEEP, FORK, or DIED.
- * The function calculates the time elapsed since the start of the simulation using the time_from_init function.
+ * The function calculates the time elapsed since the start of the simulation 
+ * using the time_from_init function.
  * The philosopher's ID is also printed along with the status.
  * 
  * @param print The status to be printed (THINK, EAT, SLEEP, FORK, or DIED).
@@ -53,12 +55,16 @@ void	print_status(t_print print, t_philo *philo)
 }
 
 /**
- * @brief if a philosopher has died either due to starvation or by another philosopher.
+ * @brief if a philosopher has died either due to starvation or by another 
+ * philosopher.
  * 
- * It checks if any philosopher has died by acquiring the dead flag using the mutex.
- * Also checks if the philosopher has died of starvation by comparing the time since their last meal
+ * It checks if any philosopher has died by acquiring the dead flag using 
+ * the mutex.
+ * Also checks if the philosopher has died of starvation by comparing the 
+ * time since their last meal
  * with the time_to_die value.
- * If the philosopher has died of starvation, it sets the dead flag to 1 and prints the status.
+ * If the philosopher has died of starvation, it sets the dead flag to 1 
+ * and prints the status.
  * 
  * @param philo The philosopher to check.
  * @return 1 if the philosopher has died, 0 otherwise.
@@ -84,7 +90,8 @@ int	check_death(t_philo *philo)
  * It checks if the first fork is available, and if so, takes it.
  * Then it checks if the second fork is available, and if so, takes it.
  * If both forks are successfully taken, the function returns 0.
- * If the philosopher dies while attempting to take the forks, the function returns 1.
+ * If the philosopher dies while attempting to take the forks, the 
+ * function returns 1.
  * 
  * @param philo Pointer to the philosopher structure.
  * @return 0 if the forks are successfully taken, 1 if the philosopher dies.
@@ -102,7 +109,8 @@ int	take_forks(t_philo *philo)
 			take++;
 			print_status(FORK, philo);
 		}
-		else if (get_int(&philo->second_fork->mutex, &philo->second_fork->taken) == 0)
+		else if (get_int(&philo->second_fork->mutex,
+				&philo->second_fork->taken) == 0)
 		{
 			set_int(&philo->second_fork->mutex, &philo->second_fork->taken, 1);
 			take++;

@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:23:29 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/29 20:58:04 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:55:14 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ time_t	time_from_init(long start_sim)
 }
 
 /**
- * Sleeps for a specified amount of time, while checking for the occurrence of death.
+ * Sleeps for a specified amount of time, while checking for the
+ * occurrence of death.
  * 
  * @param time The time to sleep in milliseconds.
  * @param philo The philosopher object.

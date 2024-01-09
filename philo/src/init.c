@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:26:51 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/28 20:53:14 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/08 13:37:08 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	asign_forks(t_data *data)
 {
 	int	i;
+
 	data->philo[0].first_fork = &data->fork[0];
 	data->philo[0].second_fork = &data->fork[data->num_philos - 1];
 	i = 1;
@@ -59,13 +60,19 @@ void	init_fork(t_data *data)
 	}
 }
 
+/**
+ * Initializes the data structure with the provided arguments.
+ * 
+ * @param data The data structure to initialize.
+ * @param argc The number of command-line arguments.
+ * @param argv The array of command-line arguments.
+ */
 void	init_data(t_data *data, int argc, char **argv)
 {
 	data->num_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	pthread_mutex_init(&data->mutex, NULL);
 	data->threads_created = 0;
 	data->dead = 0;
 	if (argc == 6)

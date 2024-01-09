@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   getset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:31:44 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/28 14:32:20 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/07 21:13:01 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 long	get_long(pthread_mutex_t *mutex, long *value)
 {
 	long	read;
+
 	pthread_mutex_lock(mutex);
 	read = *value;
 	pthread_mutex_unlock(mutex);
@@ -38,6 +39,7 @@ void	set_int(pthread_mutex_t *mutex, int *dest, int value)
 int	get_int(pthread_mutex_t *mutex, int *value)
 {
 	int	read;
+
 	pthread_mutex_lock(mutex);
 	read = *value;
 	pthread_mutex_unlock(mutex);

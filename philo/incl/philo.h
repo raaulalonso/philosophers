@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:07 by raalonso          #+#    #+#             */
-/*   Updated: 2023/12/29 20:53:24 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/07 21:13:22 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum e_print
 	DIED
 }	t_print;
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
