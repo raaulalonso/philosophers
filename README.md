@@ -8,6 +8,23 @@
  
 The dining philosophers problem is a classic synchronization and concurrency challenge in computer science that illustrates issues related to resource sharing and deadlock avoidance, using the metaphor of philosophers seated around a dining table who must acquire multiple shared resources (forks) to eat, but must avoid deadlock and data races.
 
+## Problem explanation
+
+- One or more philosophers sit at a round table.
+- In the center of the table is a large bowl of spaghetti.
+- Philosophers can only eat, think, or sleep.
+- While they are eating, they cannot think or sleep;
+- While they are thinking, they cannot sleep or eat;
+- And, of course, while they are sleeping, they cannot eat or think.
+- There are also forks on the table, as many forks as philosophers.
+- Because picking up and eating spaghetti with a single fork can be awkward, philosophers must take the fork on the right and the one on the left, one in each hand.
+- When a philosopher finishes eating, they will leave the forks on the table and immediately start sleeping. Once they wake up, they will start thinking again.
+- The simulation will stop when a philosopher dies of starvation.
+- All philosophers need to eat and should never die of hunger.
+- Philosophers do not speak to each other.
+- Philosophers do not know if another philosopher is going to die.
+- Needless to say, everyone should avoid dying.
+
 ## Getting Started
 
 ### Prerequisites
@@ -49,4 +66,3 @@ To launch the philosophers simulation you can use the following command:
 
 ## Screenshots
 
-![Demo GIF](https://github.com/Apeslx/minitalk/blob/main/screenshots/ScreenRecording.gif)
