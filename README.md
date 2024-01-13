@@ -50,7 +50,7 @@ Before you can start installing philosophers, make sure you have the following p
    ```shell
    make
 
-## Running the programs
+## Running the program
 
 To launch the philosophers simulation you can use the following command:
 
