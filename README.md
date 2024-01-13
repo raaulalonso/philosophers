@@ -66,3 +66,5 @@ To launch the philosophers simulation you can use the following command:
 
 ## Screenshots
 
+![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording1.gif)
+![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording2.gif)</td>
