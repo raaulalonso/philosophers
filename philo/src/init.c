@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 20:26:51 by raalonso          #+#    #+#             */
-/*   Updated: 2024/01/08 13:37:08 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/13 21:52:48 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_fork(t_data *data)
 
 	i = 0;
 	data->fork = malloc(sizeof(t_fork) * data->num_philos);
-	if (!data->num_philos)
+	if (!data->fork)
 		error_exit("Error: Malloc failed.");
 	while (i < data->num_philos)
 	{
