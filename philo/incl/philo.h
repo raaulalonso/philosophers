@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:07 by raalonso          #+#    #+#             */
-/*   Updated: 2024/01/07 21:13:22 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:37:25 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_philo
 	t_fork			*second_fork;
 	t_fork			*first_fork;
 	pthread_t		thread;
-	pthread_mutex_t	mutex;
 }	t_philo;
 
 typedef struct s_data
@@ -78,5 +77,6 @@ int		precise_sleep(long time, t_philo *philo);
 void	print_status(t_print print, t_philo *philo);
 int		take_forks(t_philo *philo);
 int		check_death(t_philo *philo);
+void	free_data(t_data *data);
 
 #endif

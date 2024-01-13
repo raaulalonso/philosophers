@@ -6,7 +6,7 @@
 /*   By: raalonso <raalonso@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:55:21 by raalonso          #+#    #+#             */
-/*   Updated: 2024/01/08 13:36:41 by raalonso         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:36:54 by raalonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	dinner(t_philo *philo)
 	if (precise_sleep(philo->data->time_to_eat, philo) == 1)
 		return ;
 	print_status(SLEEP, philo);
-	set_int(&philo->mutex, &philo->first_fork->taken, 0);
-	set_int(&philo->mutex, &philo->second_fork->taken, 0);
+	set_int(&philo->first_fork->mutex, &philo->first_fork->taken, 0);
+	set_int(&philo->second_fork->mutex, &philo->second_fork->taken, 0);
 	if (precise_sleep(philo->data->time_to_sleep, philo) == 1)
 		return ;
 }
@@ -135,11 +135,6 @@ void	threads_loop(t_data *data)
 	}
 }
 
-void	leaks()
-{
-	system("leaks philo");
-}
-
 /**
  * @brief The main function of the program.
  *
@@ -157,7 +152,6 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	atexit(leaks);
 	if ((argc != 5 && argc != 6) || check_arg(argc, argv) == 1)
 		error_exit("Error: Invalid arguments.");
 	init_data(&data, argc, argv);
@@ -168,7 +162,6 @@ int	main(int argc, char **argv)
 		pthread_join(data.philo[i].thread, NULL);
 		i++;
 	}
-	free(data.philo);
-	free(data.fork);
+	free_data(&data);
 	return (0);
 }
