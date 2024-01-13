@@ -35,20 +35,17 @@ Before you can start installing philosophers, make sure you have the following p
 
 ## Running the programs
 
-To launch minitalk, you need to execute the server first with the following command:
+To launch the philosophers simulation you can use the following command:
 
    ```shell
-   ./server
+   ./philo [num_of_philo] [time_to_die] [time_to_eat] [time_to_sleep] [num_of_meals_OPTIONAL]
    ```
 
-Then, in a new shell window, execute the client with the following command:
-
-   ```shell
-   ./client [PID] [String]
-   ```
-
-Replace [PID] with the process id that the server will print when executed. Also replace [String] with the string you want to send to the server (it can be as long as you like).
-The server should print the string correctly and considerably fast.
+- Replace "[num_of_philo]" with the number of philosophers for the simulation.  
+- Replace "[time_to_die]" with the time in miliseconds a philosopher has before dying of hunger.  
+- Replace "[time_to_ear]" with the time in miliseconds a philosopher will spend eating.  
+- Replace "[time_to_sleep]" with the time in miliseconds a philosopher will spend sleeping.  
+- Replace "[num_of_meals_OPTIONAL]" with the number of meals every philosopher should have before ending the program. THIS ARGUMENT IS OPTIONAL.
 
 ## Screenshots
 
