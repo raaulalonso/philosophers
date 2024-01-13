@@ -67,7 +67,7 @@ To launch the philosophers simulation you can use the following command:
 ## Screenshots
 
 4 650 200 150
-- Here, the simulation is executed with the arguments 4 650 200 150. As a result, all of the philosophers are able to eat at time and no one dies.
+- Here, the simulation is executed with the arguments 4 650 200 150. As a result, all of the philosophers are able to eat at time and no one dies.  
 ![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording1.gif)
-- Here, the simulation is executed with the arguments 4 200 400 300. As a result a philosopher dies because could not eat in time and the simulation ends.
+- Here, the simulation is executed with the arguments 4 200 400 300. As a result a philosopher dies because could not eat in time and the simulation ends.  
 ![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording2.gif)
