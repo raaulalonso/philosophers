@@ -39,7 +39,7 @@ Before you can start installing philosophers, make sure you have the following p
 1. Clone the philosophers repository to your local machine:
 
    ```shell
-   git clone https://github.com/Apeslx/philosophers.git philosophers
+   git clone https://github.com/raaulalonso/philosophers.git philosophers
 2. Change your current working directory to the project folder:
    
    ```shell
