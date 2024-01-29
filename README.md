@@ -1,10 +1,10 @@
 # philosophers
 
- [![Intro](https://img.shields.io/badge/Cursus-Philosphers-success?style=for-the-badge&logo=42)](https://github.com/Apeslx/philosophers)
+ [![Intro](https://img.shields.io/badge/Cursus-Philosphers-success?style=for-the-badge&logo=42)](https://github.com/raaulalonso/philosophers)
  
- [![Stars](https://img.shields.io/github/stars/Apeslx/philosophers?color=ffff00&label=Stars&logo=Stars&style=?style=flat)](https://github.com/Apeslx/philosophers)
- [![Size](https://img.shields.io/github/repo-size/Apeslx/philosophers?color=blue&label=Size&logo=Size&style=?style=flat)](https://github.com/Apeslx/philosophers)
- [![Activity](https://img.shields.io/github/last-commit/Apeslx/philosophers?color=red&label=Last%20Commit&style=flat)](https://github.com/Apeslx/philosophers)
+ [![Stars](https://img.shields.io/github/stars/raaulalonso/philosophers?color=ffff00&label=Stars&logo=Stars&style=?style=flat)](https://github.com/raaulalonso/philosophers)
+ [![Size](https://img.shields.io/github/repo-size/raaulalonso/philosophers?color=blue&label=Size&logo=Size&style=?style=flat)](https://github.com/raaulalonso/philosophers)
+ [![Activity](https://img.shields.io/github/last-commit/raaulalonso/philosophers?color=red&label=Last%20Commit&style=flat)](https://github.com/raaulalonso/philosophers)
  
 The dining philosophers problem is a classic synchronization and concurrency challenge in computer science that illustrates issues related to resource sharing and deadlock avoidance, using the metaphor of philosophers seated around a dining table who must acquire multiple shared resources (forks) to eat, but must avoid deadlock and data races.
 
@@ -68,6 +68,6 @@ To launch the philosophers simulation you can use the following command:
 
 4 650 200 150
 - Here, the simulation is executed with the arguments 4 650 200 150. As a result, all of the philosophers are able to eat at time and no one dies.  
-![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording1.gif)
+![Demo GIF](https://github.com/raaulalonso/philosophers/blob/main/screenshots/Screenrecording1.gif)
 - Here, the simulation is executed with the arguments 4 200 400 300. As a result a philosopher dies because could not eat in time and the simulation ends.  
-![Demo GIF](https://github.com/Apeslx/philosophers/blob/main/screenshots/Screenrecording2.gif)
+![Demo GIF](https://github.com/raaulalonso/philosophers/blob/main/screenshots/Screenrecording2.gif)
